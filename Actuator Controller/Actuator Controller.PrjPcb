@@ -169,7 +169,7 @@ GenerateClassCluster=0
 DocumentUniqueId=EWBXFNIC
 
 [Document8]
-DocumentPath=Connectors.SchDoc
+DocumentPath=..\..\Users\rusir\OneDrive\Documents\GitHub\altium-library\Celestial Altium Library - altium_library.DbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -183,7 +183,7 @@ ClassGenCCAutoRoomEnabled=0
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=KZJKSVUZ
+DocumentUniqueId=
 
 [Configuration1]
 Name=Sources
