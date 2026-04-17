@@ -67,7 +67,7 @@ GenerateClassCluster=0
 DocumentUniqueId=OCMDSSEQ
 
 [Document2]
-DocumentPath=Actuator Controller.SchDoc
+DocumentPath=MCU.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
