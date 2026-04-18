@@ -1,0 +1,62 @@
+{
+  "partNumber": "C39832249",
+  "title": "4.5X4.5X5.0WATERPROOF TACT SWITCH DIP 260G",
+  "schId": "3d770aca20d948d18f85a77ab08c8c9b",
+  "pcbId": "1b3288b7f47348c6bf5d33d4a775fa3e",
+  "searchRow": {
+    "uuid": "3d770aca20d948d18f85a77ab08c8c9b",
+    "title": "4.5X4.5X5.0WATERPROOF TACT SWITCH DIP 260G",
+    "description": "",
+    "description_cn": "",
+    "tags": [],
+    "type": 3,
+    "docType": 2,
+    "SMT": false,
+    "ownerUuid": "0819f05c4eef4c71ace90d822a990e87",
+    "dataStr": {
+      "head": {
+        "c_para": {
+          "Contributor": "lcsc",
+          "Manufacturer": "CAX(创都)",
+          "Manufacturer Part": "4.5x4.5x5.0Waterproof Tact Switch DIP 260g",
+          "Supplier": "LCSC",
+          "Supplier Part": "C39832249",
+          "name": "4.5X4.5X5.0WATERPROOF TACT SWITCH DIP 260G",
+          "package": "SW-TH_4P-L4.5-W4.5-P3.00-LS5.5",
+          "pre": "SW?"
+        },
+        "c_spiceCmd": null,
+        "docType": "2",
+        "hasIdFlag": true,
+        "importFlag": 0,
+        "puuid": "1b3288b7f47348c6bf5d33d4a775fa3e",
+        "utime": 1760275697,
+        "uuid": "3d770aca20d948d18f85a77ab08c8c9b"
+      }
+    },
+    "lcsc": {
+      "id": 41557885,
+      "number": "C39832249"
+    },
+    "szlcsc": {
+      "id": 41557885,
+      "number": "C39832249"
+    },
+    "subparts": [],
+    "verify": true,
+    "owner": {
+      "avatar": "//image.lceda.cn/avatars/2018/6/kFlrasi7W06gTdBLAqW3fkrqbDhbowynuSzkjqso.png",
+      "nickname": "LCSC",
+      "username": "lcsc",
+      "uuid": "0819f05c4eef4c71ace90d822a990e87"
+    },
+    "creator": {
+      "avatar": "/images/avatar-default.png",
+      "nickname": "陆荣明",
+      "username": "jiaowoxiaolu",
+      "uuid": "07ed70b69a8446f6861e6ac37b445c9a"
+    },
+    "datastrid": "3fa7bb411ad44efbb0b81d66d77cc744",
+    "jlcOnSale": 0
+  }
+}
