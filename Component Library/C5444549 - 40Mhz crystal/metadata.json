@@ -1,0 +1,67 @@
+{
+  "partNumber": "C5444549",
+  "title": "XL2EL89CPI-111YLC-40M",
+  "schId": "ca457e480b104beca98d5b8ef937b65d",
+  "pcbId": "9e297fbdb6c24ee39419d7ac96617dbf",
+  "searchRow": {
+    "uuid": "ca457e480b104beca98d5b8ef937b65d",
+    "title": "XL2EL89CPI-111YLC-40M",
+    "description": "",
+    "description_cn": "",
+    "tags": [
+      "Crystals"
+    ],
+    "type": 3,
+    "docType": 2,
+    "SMT": true,
+    "ownerUuid": "0819f05c4eef4c71ace90d822a990e87",
+    "dataStr": {
+      "head": {
+        "c_para": {
+          "Contributor": "lcsc",
+          "JLCPCB Part Class": "Extended Part",
+          "Manufacturer": "YXC(扬兴晶振)",
+          "Manufacturer Part": "XL2EL89CPI-111YLC-40M",
+          "Supplier": "LCSC",
+          "Supplier Part": "C5444549",
+          "Value": "40MHz",
+          "name": "XL2EL89CPI-111YLC-40M",
+          "nameAlias": "Value",
+          "package": "CRYSTAL-SMD_4P-L3.2-W2.5-BL",
+          "pre": "X?"
+        },
+        "c_spiceCmd": null,
+        "docType": "2",
+        "hasIdFlag": true,
+        "importFlag": 0,
+        "puuid": "9e297fbdb6c24ee39419d7ac96617dbf",
+        "utime": 1719796188,
+        "uuid": "ca457e480b104beca98d5b8ef937b65d"
+      }
+    },
+    "lcsc": {
+      "id": 6336545,
+      "number": "C5444549"
+    },
+    "szlcsc": {
+      "id": 6336545,
+      "number": "C5444549"
+    },
+    "subparts": [],
+    "verify": true,
+    "owner": {
+      "avatar": "//image.lceda.cn/avatars/2018/6/kFlrasi7W06gTdBLAqW3fkrqbDhbowynuSzkjqso.png",
+      "nickname": "LCSC",
+      "username": "lcsc",
+      "uuid": "0819f05c4eef4c71ace90d822a990e87"
+    },
+    "creator": {
+      "avatar": "/image/avatar-default.png",
+      "nickname": "whlwoaini",
+      "username": "whlwoaini",
+      "uuid": "160480ffb5d54e09b3a4616e838947e2"
+    },
+    "datastrid": "e5aac422a1b84fff8ed134a4a70364bb",
+    "jlcOnSale": 1
+  }
+}
