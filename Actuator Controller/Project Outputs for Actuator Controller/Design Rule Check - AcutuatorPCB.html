@@ -1,0 +1,889 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4/23/2026</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12:28:23 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc" class="file"><acronym title="C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc">C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">175</td></tr>
+</table>
+</td>
+</table><a name="IDCOAEBDGAZOTTCD4PEYG24CHR3NB5B10CJTMANPDIY2CXV0QOZFEL"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTBE4OT1YGSPOGET1NQ40TIENPMLQAHQHJ32KCED1UAUGSGT4DX2J">Clearance Constraint (Gap=5mil) (All),(All)</a></td>
+<td class="column2">25</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTVSCYDTG45CELEFCCLH32YTK4JGZ5NJS1SJLLI2QF1YHDTRPMKD">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOOSJLF3JDH5NLQ1GZPQ4XL3PWLILM0VSHMQYMAN4EMJ4KMDYUBGF">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">68</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTT5WRY2ETLALMKROZBB2N3J34GD03SRSGFGFXWL0VB1PFP3MPLML">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKISSBLITP2WIM2HTBZ3FFAIQXMAOM0Z0UMVO31PJGJ3BZMRQYYSE">Width Constraint (Min=5mil) (Max=1000mil) (Preferred=5mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID52WEVENC3AE2MUQIEOIHSWIYVEJE3LI0MKISH4HDDVJAXZ4LEY">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1ORGCNSEP00KFRVN1QV213YC2JEP35KNDX0UZFVYPOYWKBWMRCD">Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIDLQQJF4DRNIKQOS5LUO3PNSRM5YHBBCND2KOSPKT1LSGWLSL42K">Power Plane Connect Rule(Relief Connect )(Expansion=11.811mil) (Conductor Width=5mil) (Air Gap=5mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDP4VED1SLUDUUDYAIW2HM1UV1JGPSOZ1FMEO0GVOBYFLEI2VK23CM">Minimum Annular Ring (Minimum=3mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDE0HEIUWBJ0A0NGAG2TUOSAOXDFTTO00JBGBCBHO1UEVH3T3GFW4L">Hole Size Constraint (Min=11.811mil) (Max=248.031mil) (All)</a></td>
+<td class="column2">12</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDULEMU2V2N30DOM4AIR40QXQ5YONL0FSXPPS3EYOFGXTFAJQV1R1K">Hole To Hole Clearance (Gap=9.842mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDR4WLX4BHDV3KEUTRFJG3BXKZIEBVOBXMLVIG2KLPADSF0RSHAE2J">Minimum Solder Mask Sliver (Gap=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXWL12OQ0JKHJFWGRNU5YHPJLDDMIFX1QRTG2JCK0WOSQAKEH2OZN">Silk To Solder Mask (Clearance=5mil) (IsPad),(All)</a></td>
+<td class="column2">46</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJA52C3SLEXBFO1MI0RJ0XQCHNEZFV5JJYYQO2FYG5U2K15Y0L3G">Silk to Silk (Clearance=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOHIVFHOUCLZHHEK5W2ZOAJZCIBJQ1UQGQYG4CPCU310OS1JG1PO">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">21</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEZIWB34JNIIFMGPMTATLXKGFQEXBFXGHADQ5PWILNH0VJ4FUTD1J">Board Clearance Constraint (Gap=0mil) (All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDROHLQLZ03TN2LRU42YESMTOQTOB3Z4GLMQVVHEG2WUDPWPCM4X4O">Height Constraint (Min=0mil) (Max=71497.938mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">175</td>
+</tr>
+</table><br><a name="IDTBE4OT1YGSPOGET1NQ40TIENPMLQAHQHJ32KCED1UAUGSGT4DX2J"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=5mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1424.631mil|Location2.X=1430.881mil|Location1.Y=2798.647mil|Location2.Y=2804.897mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1424.631mil|Location2.X=1430.881mil|Location1.Y=2798.647mil|Location2.Y=2804.897mil|Absolute=True">Clearance Constraint: (1.969mil &lt; 5mil) Between Pad U1-41_1(1427.756mil,2783.071mil) on Top Layer And Pad U1-41_10(1427.756mil,2810.63mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1424.631mil|Location2.X=1430.881mil|Location1.Y=2761.245mil|Location2.Y=2767.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1424.631mil|Location2.X=1430.881mil|Location1.Y=2761.245mil|Location2.Y=2767.495mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_1(1427.756mil,2783.071mil) on Top Layer And Pad U1-41_14(1427.756mil,2755.512mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1405.93mil|Location2.X=1412.18mil|Location1.Y=2779.946mil|Location2.Y=2786.196mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1405.93mil|Location2.X=1412.18mil|Location1.Y=2779.946mil|Location2.Y=2786.196mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_1(1427.756mil,2783.071mil) on Top Layer And Pad U1-41_18(1400.197mil,2783.071mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.332mil|Location2.X=1449.582mil|Location1.Y=2779.946mil|Location2.Y=2786.196mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.332mil|Location2.X=1449.582mil|Location1.Y=2779.946mil|Location2.Y=2786.196mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_1(1427.756mil,2783.071mil) on Top Layer And Pad U1-41_19(1455.315mil,2783.071mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1424.631mil|Location2.X=1430.881mil|Location1.Y=2816.363mil|Location2.Y=2822.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1424.631mil|Location2.X=1430.881mil|Location1.Y=2816.363mil|Location2.Y=2822.613mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_10(1427.756mil,2810.63mil) on Multi-Layer And Pad U1-41_8(1427.756mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.513mil|Location2.X=1375.763mil|Location1.Y=2798.647mil|Location2.Y=2804.897mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.513mil|Location2.X=1375.763mil|Location1.Y=2798.647mil|Location2.Y=2804.897mil|Absolute=True">Clearance Constraint: (1.969mil &lt; 5mil) Between Pad U1-41_11(1372.638mil,2810.63mil) on Multi-Layer And Pad U1-41_2(1372.638mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.513mil|Location2.X=1375.763mil|Location1.Y=2816.363mil|Location2.Y=2822.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.513mil|Location2.X=1375.763mil|Location1.Y=2816.363mil|Location2.Y=2822.613mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_11(1372.638mil,2810.63mil) on Multi-Layer And Pad U1-41_7(1372.638mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.749mil|Location2.X=1485.999mil|Location1.Y=2798.647mil|Location2.Y=2804.897mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.749mil|Location2.X=1485.999mil|Location1.Y=2798.647mil|Location2.Y=2804.897mil|Absolute=True">Clearance Constraint: (1.969mil &lt; 5mil) Between Pad U1-41_12(1482.874mil,2810.63mil) on Multi-Layer And Pad U1-41_3(1482.874mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.749mil|Location2.X=1485.999mil|Location1.Y=2816.363mil|Location2.Y=2822.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.749mil|Location2.X=1485.999mil|Location1.Y=2816.363mil|Location2.Y=2822.613mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_12(1482.874mil,2810.63mil) on Multi-Layer And Pad U1-41_9(1482.874mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.513mil|Location2.X=1375.763mil|Location1.Y=2761.245mil|Location2.Y=2767.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.513mil|Location2.X=1375.763mil|Location1.Y=2761.245mil|Location2.Y=2767.495mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_13(1372.638mil,2755.512mil) on Multi-Layer And Pad U1-41_2(1372.638mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.513mil|Location2.X=1375.763mil|Location1.Y=2743.529mil|Location2.Y=2749.779mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.513mil|Location2.X=1375.763mil|Location1.Y=2743.529mil|Location2.Y=2749.779mil|Absolute=True">Clearance Constraint: (1.969mil &lt; 5mil) Between Pad U1-41_13(1372.638mil,2755.512mil) on Multi-Layer And Pad U1-41_4(1372.638mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1424.631mil|Location2.X=1430.881mil|Location1.Y=2743.529mil|Location2.Y=2749.779mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1424.631mil|Location2.X=1430.881mil|Location1.Y=2743.529mil|Location2.Y=2749.779mil|Absolute=True">Clearance Constraint: (1.969mil &lt; 5mil) Between Pad U1-41_14(1427.756mil,2755.512mil) on Multi-Layer And Pad U1-41_5(1427.756mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.749mil|Location2.X=1485.999mil|Location1.Y=2761.245mil|Location2.Y=2767.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.749mil|Location2.X=1485.999mil|Location1.Y=2761.245mil|Location2.Y=2767.495mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_15(1482.874mil,2755.512mil) on Multi-Layer And Pad U1-41_3(1482.874mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.749mil|Location2.X=1485.999mil|Location1.Y=2743.529mil|Location2.Y=2749.779mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.749mil|Location2.X=1485.999mil|Location1.Y=2743.529mil|Location2.Y=2749.779mil|Absolute=True">Clearance Constraint: (1.969mil &lt; 5mil) Between Pad U1-41_15(1482.874mil,2755.512mil) on Multi-Layer And Pad U1-41_6(1482.874mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1388.214mil|Location2.X=1394.464mil|Location1.Y=2835.064mil|Location2.Y=2841.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1388.214mil|Location2.X=1394.464mil|Location1.Y=2835.064mil|Location2.Y=2841.314mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_16(1400.197mil,2838.189mil) on Multi-Layer And Pad U1-41_7(1372.638mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1405.93mil|Location2.X=1412.18mil|Location1.Y=2835.064mil|Location2.Y=2841.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1405.93mil|Location2.X=1412.18mil|Location1.Y=2835.064mil|Location2.Y=2841.314mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_16(1400.197mil,2838.189mil) on Multi-Layer And Pad U1-41_8(1427.756mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.332mil|Location2.X=1449.582mil|Location1.Y=2835.064mil|Location2.Y=2841.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.332mil|Location2.X=1449.582mil|Location1.Y=2835.064mil|Location2.Y=2841.314mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_17(1455.315mil,2838.189mil) on Multi-Layer And Pad U1-41_8(1427.756mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.048mil|Location2.X=1467.298mil|Location1.Y=2835.064mil|Location2.Y=2841.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.048mil|Location2.X=1467.298mil|Location1.Y=2835.064mil|Location2.Y=2841.314mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_17(1455.315mil,2838.189mil) on Multi-Layer And Pad U1-41_9(1482.874mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1388.214mil|Location2.X=1394.464mil|Location1.Y=2779.946mil|Location2.Y=2786.196mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1388.214mil|Location2.X=1394.464mil|Location1.Y=2779.946mil|Location2.Y=2786.196mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_18(1400.197mil,2783.071mil) on Multi-Layer And Pad U1-41_2(1372.638mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.048mil|Location2.X=1467.298mil|Location1.Y=2779.946mil|Location2.Y=2786.196mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.048mil|Location2.X=1467.298mil|Location1.Y=2779.946mil|Location2.Y=2786.196mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_19(1455.315mil,2783.071mil) on Multi-Layer And Pad U1-41_3(1482.874mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1388.214mil|Location2.X=1394.464mil|Location1.Y=2724.828mil|Location2.Y=2731.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1388.214mil|Location2.X=1394.464mil|Location1.Y=2724.828mil|Location2.Y=2731.078mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_20(1400.197mil,2727.953mil) on Multi-Layer And Pad U1-41_4(1372.638mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1405.93mil|Location2.X=1412.18mil|Location1.Y=2724.828mil|Location2.Y=2731.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1405.93mil|Location2.X=1412.18mil|Location1.Y=2724.828mil|Location2.Y=2731.078mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_20(1400.197mil,2727.953mil) on Multi-Layer And Pad U1-41_5(1427.756mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.332mil|Location2.X=1449.582mil|Location1.Y=2724.828mil|Location2.Y=2731.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.332mil|Location2.X=1449.582mil|Location1.Y=2724.828mil|Location2.Y=2731.078mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_21(1455.315mil,2727.953mil) on Multi-Layer And Pad U1-41_5(1427.756mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.048mil|Location2.X=1467.298mil|Location1.Y=2724.828mil|Location2.Y=2731.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.048mil|Location2.X=1467.298mil|Location1.Y=2724.828mil|Location2.Y=2731.078mil|Absolute=True">Clearance Constraint: (1.968mil &lt; 5mil) Between Pad U1-41_21(1455.315mil,2727.953mil) on Multi-Layer And Pad U1-41_6(1482.874mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=646.296mil|Location2.X=652.546mil|Location1.Y=1644.605mil|Location2.Y=1650.855mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=646.296mil|Location2.X=652.546mil|Location1.Y=1644.605mil|Location2.Y=1650.855mil|Absolute=True">Clearance Constraint: (4.87mil &lt; 5mil) Between Track (633.858mil,1637.795mil)(671.26mil,1637.795mil) on Top Layer And Track (635.788mil,1671.299mil)(649.421mil,1657.665mil) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDOOSJLF3JDH5NLQ1GZPQ4XL3PWLILM0VSHMQYMAN4EMJ4KMDYUBGF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=641.732mil|Location2.X=778.543mil|Location1.Y=436.417mil|Location2.Y=1130.906mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=641.732mil|Location2.X=778.543mil|Location1.Y=436.417mil|Location2.Y=1130.906mil|Absolute=True">Un-Routed Net Constraint: Net VS Between Pad C12-2(670.276mil,1100.394mil) on Top Layer And Pad C13-1(736.221mil,468.898mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=693.898mil|Location2.X=1144.685mil|Location1.Y=298.622mil|Location2.Y=363.583mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=693.898mil|Location2.X=1144.685mil|Location1.Y=298.622mil|Location2.Y=363.583mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C13-2(736.221mil,331.102mil) on Multi-Layer And Pad C7-2(1102.362mil,331.102mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.827mil|Location2.X=1920.276mil|Location1.Y=1554.134mil|Location2.Y=1611.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.827mil|Location2.X=1920.276mil|Location1.Y=1554.134mil|Location2.Y=1611.22mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C17-1(1791.339mil,1582.677mil) on Bottom Layer And Pad C16-1(1889.764mil,1582.677mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1648.622mil|Location2.X=1821.85mil|Location1.Y=1484.055mil|Location2.Y=1611.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1648.622mil|Location2.X=1821.85mil|Location1.Y=1484.055mil|Location2.Y=1611.22mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad IC1-4(1681.102mil,1499.803mil) on Bottom Layer And Pad C17-1(1791.339mil,1582.677mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.827mil|Location2.X=1821.85mil|Location1.Y=1554.134mil|Location2.Y=1756.89mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.827mil|Location2.X=1821.85mil|Location1.Y=1554.134mil|Location2.Y=1756.89mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C17-1(1791.339mil,1582.677mil) on Bottom Layer And Via (1806.102mil,1742.126mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=755.394mil|Location2.X=897.638mil|Location1.Y=1799.213mil|Location2.Y=1880.906mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=755.394mil|Location2.X=897.638mil|Location1.Y=1799.213mil|Location2.Y=1880.906mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (770.158mil,1813.976mil) from Top Layer to Bottom Layer And Pad C18-1(867.126mil,1852.362mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2286.418mil|Location2.X=2573.819mil|Location1.Y=1510.827mil|Location2.Y=1924.218mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2286.418mil|Location2.X=2573.819mil|Location1.Y=1510.827mil|Location2.Y=1924.218mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad SW1-1(2320.866mil,1889.769mil) on Multi-Layer And Pad C19-1(2543.307mil,1539.37mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2941.929mil|Location2.X=3002.953mil|Location1.Y=1936.024mil|Location2.Y=2095.473mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2941.929mil|Location2.X=3002.953mil|Location1.Y=1936.024mil|Location2.Y=2095.473mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C21-1(2970.472mil,2064.961mil) on Top Layer And Pad X1-4(2976.378mil,1966.536mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2880.905mil|Location2.X=2937.992mil|Location1.Y=1752.953mil|Location2.Y=1910.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2880.905mil|Location2.X=2937.992mil|Location1.Y=1752.953mil|Location2.Y=1910.433mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad X1-2(2909.448mil,1879.922mil) on Top Layer And Pad C22-1(2909.449mil,1783.465mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2764.764mil|Location2.X=2937.992mil|Location1.Y=1375.984mil|Location2.Y=1813.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2764.764mil|Location2.X=2937.992mil|Location1.Y=1375.984mil|Location2.Y=1813.976mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2779.528mil,1390.748mil) from Top Layer to Bottom Layer And Pad C22-1(2909.449mil,1783.465mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=768.701mil|Location2.X=1393.307mil|Location1.Y=2678.15mil|Location2.Y=2748.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=768.701mil|Location2.X=1393.307mil|Location1.Y=2678.15mil|Location2.Y=2748.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C5-1(799.213mil,2706.693mil) on Top Layer And Pad U1-41_4(1372.638mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2040.354mil|Location2.X=2371.063mil|Location1.Y=298.622mil|Location2.Y=363.583mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2040.354mil|Location2.X=2371.063mil|Location1.Y=298.622mil|Location2.Y=363.583mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C6-2(2082.677mil,331.102mil) on Multi-Layer And Pad C8-1(2340.551mil,328.74mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.732mil|Location2.X=2125mil|Location1.Y=245.625mil|Location2.Y=389.325mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.732mil|Location2.X=2125mil|Location1.Y=245.625mil|Location2.Y=389.325mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J7-2(1588.583mil,317.475mil) on Multi-Layer And Pad C6-2(2082.677mil,331.102mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1060.039mil|Location2.X=1660.433mil|Location1.Y=245.625mil|Location2.Y=389.325mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1060.039mil|Location2.X=1660.433mil|Location1.Y=245.625mil|Location2.Y=389.325mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C7-2(1102.362mil,331.102mil) on Multi-Layer And Pad J7-2(1588.583mil,317.475mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2608.268mil|Location2.X=2823.819mil|Location1.Y=300.197mil|Location2.Y=406.496mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2608.268mil|Location2.X=2823.819mil|Location1.Y=300.197mil|Location2.Y=406.496mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2623.032mil,391.732mil) from Top Layer to Bottom Layer And Pad C9-1(2793.307mil,328.74mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2714.431mil|Location2.X=2823.819mil|Location1.Y=363.189mil|Location2.Y=1324.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2714.431mil|Location2.X=2823.819mil|Location1.Y=363.189mil|Location2.Y=1324.055mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad U6-3(2729.785mil,1284.39mil) on Top Layer And Pad C9-2(2793.307mil,391.732mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1177.165mil|Location2.X=1713.583mil|Location1.Y=1569.882mil|Location2.Y=1628.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1177.165mil|Location2.X=1713.583mil|Location1.Y=1569.882mil|Location2.Y=1628.937mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad R17-2(1202.756mil,1599.409mil) on Bottom Layer And Pad IC1-2(1681.102mil,1599.803mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1583.976mil|Location2.X=1713.583mil|Location1.Y=1410.433mil|Location2.Y=1515.551mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1583.976mil|Location2.X=1713.583mil|Location1.Y=1410.433mil|Location2.Y=1515.551mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J3-2(1598.74mil,1425.197mil) on Bottom Layer And Pad IC1-4(1681.102mil,1499.803mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2671.85mil|Location2.X=2905.512mil|Location1.Y=2602.362mil|Location2.Y=3062.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2671.85mil|Location2.X=2905.512mil|Location1.Y=2602.362mil|Location2.Y=3062.008mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad J1-2(2714.173mil,3000mil) on Multi-Layer And Pad R4-2(2879.921mil,2631.89mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1798.819mil|Location2.X=2143.898mil|Location1.Y=2945.866mil|Location2.Y=3107.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1798.819mil|Location2.X=2143.898mil|Location1.Y=2945.866mil|Location2.Y=3107.677mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-40(1831.299mil,3087.008mil) on Top Layer And Pad J2-4(2101.575mil,3007.874mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1177.165mil|Location2.X=1333.661mil|Location1.Y=1569.882mil|Location2.Y=1793.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1177.165mil|Location2.X=1333.661mil|Location1.Y=1569.882mil|Location2.Y=1793.937mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad R17-2(1202.756mil,1599.409mil) on Bottom Layer And Pad J4-1(1318.898mil,1779.173mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=765.158mil|Location2.X=1418.898mil|Location1.Y=1687.402mil|Location2.Y=1879.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=765.158mil|Location2.X=1418.898mil|Location1.Y=1687.402mil|Location2.Y=1879.173mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Track (865.158mil,1727.362mil)(865.158mil,1787.402mil) on Top Layer And Pad J4-1(1318.898mil,1779.173mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1304.134mil|Location2.X=1501.968mil|Location1.Y=1684.409mil|Location2.Y=1767.717mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1304.134mil|Location2.X=1501.968mil|Location1.Y=1684.409mil|Location2.Y=1767.717mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J4-2(1318.898mil,1699.173mil) on Bottom Layer And Pad R7-1(1472.441mil,1742.126mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=894.685mil|Location2.X=1333.661mil|Location1.Y=1632.874mil|Location2.Y=1713.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=894.685mil|Location2.X=1333.661mil|Location1.Y=1632.874mil|Location2.Y=1713.937mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (909.449mil,1647.638mil) from Top Layer to Bottom Layer And Pad J4-2(1318.898mil,1699.173mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.331mil|Location2.X=2905.512mil|Location1.Y=2307.086mil|Location2.Y=2464.567mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.331mil|Location2.X=2905.512mil|Location1.Y=2307.086mil|Location2.Y=2464.567mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad R1-2(2879.921mil,2336.614mil) on Top Layer And Pad R2-2(2879.921mil,2435.039mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2714.431mil|Location2.X=2905.512mil|Location1.Y=1244.725mil|Location2.Y=2366.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2714.431mil|Location2.X=2905.512mil|Location1.Y=1244.725mil|Location2.Y=2366.142mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad U6-3(2729.785mil,1284.39mil) on Top Layer And Pad R1-2(2879.921mil,2336.614mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=549.213mil|Location2.X=602.362mil|Location1.Y=1881.89mil|Location2.Y=2197.835mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=549.213mil|Location2.X=602.362mil|Location1.Y=1881.89mil|Location2.Y=2197.835mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R12-1(575.787mil,2171.26mil) on Top Layer And Via (585.63mil,1896.653mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1177.165mil|Location2.X=1229.331mil|Location1.Y=1482.283mil|Location2.Y=1628.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1177.165mil|Location2.X=1229.331mil|Location1.Y=1482.283mil|Location2.Y=1628.937mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad R17-2(1202.756mil,1599.409mil) on Bottom Layer And Pad R16-2(1203.74mil,1511.811mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.331mil|Location2.X=2905.512mil|Location1.Y=2405.512mil|Location2.Y=2562.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.331mil|Location2.X=2905.512mil|Location1.Y=2405.512mil|Location2.Y=2562.992mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad R2-2(2879.921mil,2435.039mil) on Top Layer And Pad R3-2(2879.921mil,2533.464mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.331mil|Location2.X=2905.512mil|Location1.Y=2503.937mil|Location2.Y=2661.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.331mil|Location2.X=2905.512mil|Location1.Y=2503.937mil|Location2.Y=2661.417mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Pad R3-2(2879.921mil,2533.464mil) on Top Layer And Pad R4-2(2879.921mil,2631.89mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1654.527mil|Location2.X=1770.669mil|Location1.Y=1716.535mil|Location2.Y=1767.717mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1654.527mil|Location2.X=1770.669mil|Location1.Y=1716.535mil|Location2.Y=1767.717mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (1669.291mil,1743.11mil) from Top Layer to Bottom Layer And Pad R9-1(1741.142mil,1742.126mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1985.236mil|Location2.X=2355.315mil|Location1.Y=1849.409mil|Location2.Y=1924.218mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1985.236mil|Location2.X=2355.315mil|Location1.Y=1849.409mil|Location2.Y=1924.218mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2000mil,1864.173mil) from Top Layer to Bottom Layer And Pad SW1-1(2320.866mil,1889.769mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=660.433mil|Location2.X=847.441mil|Location1.Y=2225.394mil|Location2.Y=2438.981mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=660.433mil|Location2.X=847.441mil|Location1.Y=2225.394mil|Location2.Y=2438.981mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (675.197mil,2240.157mil) from Top Layer to Bottom Layer And Pad SW2-1(812.992mil,2404.533mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=778.543mil|Location2.X=847.441mil|Location1.Y=2370.084mil|Location2.Y=2654.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=778.543mil|Location2.X=847.441mil|Location1.Y=2370.084mil|Location2.Y=2654.528mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (799.213mil,2639.764mil) from Top Layer to Bottom Layer And Pad SW2-1(812.992mil,2404.533mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1109.842mil|Location2.X=1393.307mil|Location1.Y=2817.52mil|Location2.Y=3107.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1109.842mil|Location2.X=1393.307mil|Location1.Y=2817.52mil|Location2.Y=3107.677mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-1(1142.323mil,3087.008mil) on Top Layer And Pad U1-41_7(1372.638mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1462.205mil|Location2.X=1863.78mil|Location1.Y=2817.52mil|Location2.Y=3107.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1462.205mil|Location2.X=1863.78mil|Location1.Y=2817.52mil|Location2.Y=3107.677mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_9(1482.874mil,2838.189mil) on Top Layer And Pad U1-40(1831.299mil,3087.008mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1407.087mil|Location2.X=1503.543mil|Location1.Y=2762.402mil|Location2.Y=2803.74mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1407.087mil|Location2.X=1503.543mil|Location1.Y=2762.402mil|Location2.Y=2803.74mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_1(1427.756mil,2783.071mil) on Top Layer And Pad U1-41_3(1482.874mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1407.087mil|Location2.X=1448.425mil|Location1.Y=2707.284mil|Location2.Y=2803.74mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1407.087mil|Location2.X=1448.425mil|Location1.Y=2707.284mil|Location2.Y=2803.74mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_5(1427.756mil,2727.953mil) on Top Layer And Pad U1-41_1(1427.756mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1407.087mil|Location2.X=1448.425mil|Location1.Y=2762.402mil|Location2.Y=2858.858mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1407.087mil|Location2.X=1448.425mil|Location1.Y=2762.402mil|Location2.Y=2858.858mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_1(1427.756mil,2783.071mil) on Top Layer And Pad U1-41_8(1427.756mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1351.968mil|Location2.X=1393.307mil|Location1.Y=2762.402mil|Location2.Y=2858.858mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1351.968mil|Location2.X=1393.307mil|Location1.Y=2762.402mil|Location2.Y=2858.858mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_2(1372.638mil,2783.071mil) on Top Layer And Pad U1-41_7(1372.638mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1462.205mil|Location2.X=1503.543mil|Location1.Y=2707.284mil|Location2.Y=2803.74mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1462.205mil|Location2.X=1503.543mil|Location1.Y=2707.284mil|Location2.Y=2803.74mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_6(1482.874mil,2727.953mil) on Top Layer And Pad U1-41_3(1482.874mil,2783.071mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1462.205mil|Location2.X=1503.543mil|Location1.Y=2762.402mil|Location2.Y=2858.858mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1462.205mil|Location2.X=1503.543mil|Location1.Y=2762.402mil|Location2.Y=2858.858mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_3(1482.874mil,2783.071mil) on Top Layer And Pad U1-41_9(1482.874mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1351.968mil|Location2.X=1448.425mil|Location1.Y=2707.284mil|Location2.Y=2748.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1351.968mil|Location2.X=1448.425mil|Location1.Y=2707.284mil|Location2.Y=2748.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_4(1372.638mil,2727.953mil) on Top Layer And Pad U1-41_5(1427.756mil,2727.953mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1351.968mil|Location2.X=1448.425mil|Location1.Y=2817.52mil|Location2.Y=2858.858mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1351.968mil|Location2.X=1448.425mil|Location1.Y=2817.52mil|Location2.Y=2858.858mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-41_7(1372.638mil,2838.189mil) on Top Layer And Pad U1-41_8(1427.756mil,2838.189mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=691.929mil|Location2.X=883.071mil|Location1.Y=1542.323mil|Location2.Y=1693.898mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=691.929mil|Location2.X=883.071mil|Location1.Y=1542.323mil|Location2.Y=1693.898mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U4-29(767.716mil,1618.11mil) on Top Layer And Pad U4-13(864.173mil,1657.48mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=648.216mil|Location2.X=867.716mil|Location1.Y=1405.01mil|Location2.Y=1718.11mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=648.216mil|Location2.X=867.716mil|Location1.Y=1405.01mil|Location2.Y=1718.11mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (748.216mil,1505.01mil)(748.216mil,1521.469mil) on Top Layer And Pad U4-29(767.716mil,1618.11mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=667.716mil|Location2.X=867.902mil|Location1.Y=1518.11mil|Location2.Y=1814.752mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=667.716mil|Location2.X=867.902mil|Location1.Y=1518.11mil|Location2.Y=1814.752mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U4-29(767.716mil,1618.11mil) on Top Layer And Track (767.716mil,1714.567mil)(767.902mil,1714.752mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.581mil|Location2.X=3002.953mil|Location1.Y=1936.024mil|Location2.Y=2015.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.581mil|Location2.X=3002.953mil|Location1.Y=1936.024mil|Location2.Y=2015.003mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U5-7(2732.284mil,2002.756mil) on Top Layer And Pad X1-4(2976.378mil,1966.536mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1945.866mil|Location2.X=2745.14mil|Location1.Y=1244.725mil|Location2.Y=1662.402mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1945.866mil|Location2.X=2745.14mil|Location1.Y=1244.725mil|Location2.Y=1662.402mil|Absolute=True">Un-Routed Net Constraint: Net VCC_3V3 Between Via (1960.63mil,1647.638mil) from Top Layer to Bottom Layer And Pad U6-3(2729.785mil,1284.39mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.873mil|Location2.X=3002.953mil|Location1.Y=1849.41mil|Location2.Y=1997.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.873mil|Location2.X=3002.953mil|Location1.Y=1849.41mil|Location2.Y=1997.047mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad X1-2(2909.448mil,1879.922mil) on Top Layer And Pad X1-4(2976.378mil,1966.536mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=894.685mil|Location2.X=1026.135mil|Location1.Y=1434.238mil|Location2.Y=1662.402mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=894.685mil|Location2.X=1026.135mil|Location1.Y=1434.238mil|Location2.Y=1662.402mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (909.449mil,1647.638mil) from Top Layer to Bottom Layer And Via (1011.371mil,1449.002mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.622mil|Location2.X=1684.055mil|Location1.Y=1727.362mil|Location2.Y=1757.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.622mil|Location2.X=1684.055mil|Location1.Y=1727.362mil|Location2.Y=1757.874mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (1538.386mil,1742.126mil) from Top Layer to Bottom Layer And Via (1669.291mil,1743.11mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.339mil|Location2.X=2014.764mil|Location1.Y=1727.362mil|Location2.Y=1878.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.339mil|Location2.X=2014.764mil|Location1.Y=1727.362mil|Location2.Y=1878.937mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (1806.102mil,1742.126mil) from Top Layer to Bottom Layer And Via (2000mil,1864.173mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2325.787mil|Location2.X=2808.071mil|Location1.Y=186.024mil|Location2.Y=219.488mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2325.787mil|Location2.X=2808.071mil|Location1.Y=186.024mil|Location2.Y=219.488mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2340.551mil,204.724mil) from Top Layer to Bottom Layer And Via (2793.307mil,200.787mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2351.378mil|Location2.X=2536.417mil|Location1.Y=423.228mil|Location2.Y=882.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2351.378mil|Location2.X=2536.417mil|Location1.Y=423.228mil|Location2.Y=882.874mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2366.142mil,868.11mil) from Top Layer to Bottom Layer And Via (2521.653mil,437.992mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2528.543mil|Location2.X=2608.268mil|Location1.Y=1186.024mil|Location2.Y=1458.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2528.543mil|Location2.X=2608.268mil|Location1.Y=1186.024mil|Location2.Y=1458.661mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2543.307mil,1443.898mil) from Top Layer to Bottom Layer And Via (2593.504mil,1200.787mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2528.543mil|Location2.X=2794.291mil|Location1.Y=1375.984mil|Location2.Y=1458.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2528.543mil|Location2.X=2794.291mil|Location1.Y=1375.984mil|Location2.Y=1458.661mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2543.307mil,1443.898mil) from Top Layer to Bottom Layer And Via (2779.528mil,1390.748mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2608.268mil|Location2.X=2940.945mil|Location1.Y=423.228mil|Location2.Y=615.158mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2608.268mil|Location2.X=2940.945mil|Location1.Y=423.228mil|Location2.Y=615.158mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2623.032mil,437.992mil) from Top Layer to Bottom Layer And Via (2926.181mil,600.394mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2764.764mil|Location2.X=2844.488mil|Location1.Y=984.252mil|Location2.Y=1405.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2764.764mil|Location2.X=2844.488mil|Location1.Y=984.252mil|Location2.Y=1405.512mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2779.528mil,1390.748mil) from Top Layer to Bottom Layer And Via (2829.724mil,999.016mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2814.961mil|Location2.X=2940.945mil|Location1.Y=585.63mil|Location2.Y=1013.779mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2814.961mil|Location2.X=2940.945mil|Location1.Y=585.63mil|Location2.Y=1013.779mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (2829.724mil,999.016mil) from Top Layer to Bottom Layer And Via (2926.181mil,600.394mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=487.205mil|Location2.X=619.095mil|Location1.Y=2222.441mil|Location2.Y=2408.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=487.205mil|Location2.X=619.095mil|Location1.Y=2222.441mil|Location2.Y=2408.465mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (501.969mil,2393.701mil) from Top Layer to Bottom Layer And Via (604.331mil,2237.205mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=493.11mil|Location2.X=627.953mil|Location1.Y=2844.488mil|Location2.Y=2875mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=493.11mil|Location2.X=627.953mil|Location1.Y=2844.488mil|Location2.Y=2875mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (507.874mil,2860.236mil) from Top Layer to Bottom Layer And Via (613.189mil,2859.252mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=570.866mil|Location2.X=784.921mil|Location1.Y=1799.213mil|Location2.Y=1911.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=570.866mil|Location2.X=784.921mil|Location1.Y=1799.213mil|Location2.Y=1911.417mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (585.63mil,1896.653mil) from Top Layer to Bottom Layer And Via (770.158mil,1813.976mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=575.787mil|Location2.X=771.654mil|Location1.Y=1316.929mil|Location2.Y=1467.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=575.787mil|Location2.X=771.654mil|Location1.Y=1316.929mil|Location2.Y=1467.52mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (590.551mil,1331.693mil) from Top Layer to Bottom Layer And Via (756.89mil,1452.756mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=589.567mil|Location2.X=689.961mil|Location1.Y=2222.441mil|Location2.Y=2254.921mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=589.567mil|Location2.X=689.961mil|Location1.Y=2222.441mil|Location2.Y=2254.921mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (604.331mil,2237.205mil) from Top Layer to Bottom Layer And Via (675.197mil,2240.157mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=598.425mil|Location2.X=813.976mil|Location1.Y=2625mil|Location2.Y=2874.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=598.425mil|Location2.X=813.976mil|Location1.Y=2625mil|Location2.Y=2874.016mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (613.189mil,2859.252mil) from Top Layer to Bottom Layer And Via (799.213mil,2639.764mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=742.126mil|Location2.X=863.189mil|Location1.Y=1172.244mil|Location2.Y=1467.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=742.126mil|Location2.X=863.189mil|Location1.Y=1172.244mil|Location2.Y=1467.52mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (756.89mil,1452.756mil) from Top Layer to Bottom Layer And Via (848.425mil,1187.008mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=833.661mil|Location2.X=863.189mil|Location1.Y=1085.63mil|Location2.Y=1201.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=833.661mil|Location2.X=863.189mil|Location1.Y=1085.63mil|Location2.Y=1201.772mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Via (848.425mil,1100.394mil) from Top Layer to Bottom Layer And Via (848.425mil,1187.008mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDE0HEIUWBJ0A0NGAG2TUOSAOXDFTTO00JBGBCBHO1UEVH3T3GFW4L"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=11.811mil) (Max=248.031mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.194mil|Location2.X=1433.119mil|Location1.Y=2806.068mil|Location2.Y=2816.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.194mil|Location2.X=1433.119mil|Location1.Y=2806.068mil|Location2.Y=2816.063mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_10(1427.756mil,2810.63mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1368.076mil|Location2.X=1378.001mil|Location1.Y=2806.068mil|Location2.Y=2816.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1368.076mil|Location2.X=1378.001mil|Location1.Y=2806.068mil|Location2.Y=2816.063mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_11(1372.638mil,2810.63mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.312mil|Location2.X=1488.237mil|Location1.Y=2806.068mil|Location2.Y=2816.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.312mil|Location2.X=1488.237mil|Location1.Y=2806.068mil|Location2.Y=2816.063mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_12(1482.874mil,2810.63mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1368.076mil|Location2.X=1378.001mil|Location1.Y=2750.95mil|Location2.Y=2760.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1368.076mil|Location2.X=1378.001mil|Location1.Y=2750.95mil|Location2.Y=2760.945mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_13(1372.638mil,2755.512mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.194mil|Location2.X=1433.119mil|Location1.Y=2750.95mil|Location2.Y=2760.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.194mil|Location2.X=1433.119mil|Location1.Y=2750.95mil|Location2.Y=2760.945mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_14(1427.756mil,2755.512mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.312mil|Location2.X=1488.237mil|Location1.Y=2750.95mil|Location2.Y=2760.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.312mil|Location2.X=1488.237mil|Location1.Y=2750.95mil|Location2.Y=2760.945mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_15(1482.874mil,2755.512mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1395.635mil|Location2.X=1405.56mil|Location1.Y=2833.627mil|Location2.Y=2843.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1395.635mil|Location2.X=1405.56mil|Location1.Y=2833.627mil|Location2.Y=2843.622mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_16(1400.197mil,2838.189mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1450.753mil|Location2.X=1460.678mil|Location1.Y=2833.627mil|Location2.Y=2843.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1450.753mil|Location2.X=1460.678mil|Location1.Y=2833.627mil|Location2.Y=2843.622mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_17(1455.315mil,2838.189mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1395.635mil|Location2.X=1405.56mil|Location1.Y=2778.509mil|Location2.Y=2788.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1395.635mil|Location2.X=1405.56mil|Location1.Y=2778.509mil|Location2.Y=2788.504mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_18(1400.197mil,2783.071mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1450.753mil|Location2.X=1460.678mil|Location1.Y=2778.509mil|Location2.Y=2788.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1450.753mil|Location2.X=1460.678mil|Location1.Y=2778.509mil|Location2.Y=2788.504mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_19(1455.315mil,2783.071mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1395.635mil|Location2.X=1405.56mil|Location1.Y=2723.391mil|Location2.Y=2733.386mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1395.635mil|Location2.X=1405.56mil|Location1.Y=2723.391mil|Location2.Y=2733.386mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_20(1400.197mil,2727.953mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1450.753mil|Location2.X=1460.678mil|Location1.Y=2723.391mil|Location2.Y=2733.386mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1450.753mil|Location2.X=1460.678mil|Location1.Y=2723.391mil|Location2.Y=2733.386mil|Absolute=True">Hole Size Constraint: (7.874mil &lt; 11.811mil) Pad U1-41_21(1455.315mil,2727.953mil) on Multi-Layer Actual Hole Size = 7.874mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDXWL12OQ0JKHJFWGRNU5YHPJLDDMIFX1QRTG2JCK0WOSQAKEH2OZN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=5mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.947mil|Location2.X=2140.197mil|Location1.Y=1888.667mil|Location2.Y=1894.917mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.947mil|Location2.X=2140.197mil|Location1.Y=1888.667mil|Location2.Y=1894.917mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.59mil &lt; 5mil) Between Arc (2157.478mil,1893.699mil) on Top Overlay And Pad SW1-2(2104.33mil,1889.769mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.942mil|Location2.X=2140.192mil|Location1.Y=2002.668mil|Location2.Y=2008.918mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.942mil|Location2.X=2140.192mil|Location1.Y=2002.668mil|Location2.Y=2008.918mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.59mil &lt; 5mil) Between Arc (2157.478mil,2003.939mil) on Top Overlay And Pad SW1-4(2104.33mil,2007.879mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2284.999mil|Location2.X=2291.249mil|Location1.Y=1888.667mil|Location2.Y=1894.917mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2284.999mil|Location2.X=2291.249mil|Location1.Y=1888.667mil|Location2.Y=1894.917mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.59mil &lt; 5mil) Between Arc (2267.718mil,1893.699mil) on Top Overlay And Pad SW1-1(2320.866mil,1889.769mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2285.005mil|Location2.X=2291.255mil|Location1.Y=2002.668mil|Location2.Y=2008.918mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2285.005mil|Location2.X=2291.255mil|Location1.Y=2002.668mil|Location2.Y=2008.918mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.59mil &lt; 5mil) Between Arc (2267.718mil,2003.939mil) on Top Overlay And Pad SW1-3(2320.866mil,2007.879mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=626.073mil|Location2.X=632.323mil|Location1.Y=2403.431mil|Location2.Y=2409.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=626.073mil|Location2.X=632.323mil|Location1.Y=2403.431mil|Location2.Y=2409.681mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.59mil &lt; 5mil) Between Arc (649.604mil,2408.463mil) on Top Overlay And Pad SW2-2(596.456mil,2404.533mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=626.068mil|Location2.X=632.318mil|Location1.Y=2517.432mil|Location2.Y=2523.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=626.068mil|Location2.X=632.318mil|Location1.Y=2517.432mil|Location2.Y=2523.682mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.59mil &lt; 5mil) Between Arc (649.604mil,2518.703mil) on Top Overlay And Pad SW2-4(596.456mil,2522.643mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=777.125mil|Location2.X=783.375mil|Location1.Y=2403.431mil|Location2.Y=2409.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=777.125mil|Location2.X=783.375mil|Location1.Y=2403.431mil|Location2.Y=2409.681mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.59mil &lt; 5mil) Between Arc (759.844mil,2408.463mil) on Top Overlay And Pad SW2-1(812.992mil,2404.533mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=777.13mil|Location2.X=783.38mil|Location1.Y=2517.432mil|Location2.Y=2523.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=777.13mil|Location2.X=783.38mil|Location1.Y=2517.432mil|Location2.Y=2523.682mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.59mil &lt; 5mil) Between Arc (759.844mil,2518.703mil) on Top Overlay And Pad SW2-3(812.992mil,2522.643mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.135mil|Location2.X=799.385mil|Location1.Y=1259.67mil|Location2.Y=1265.92mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.135mil|Location2.X=799.385mil|Location1.Y=1259.67mil|Location2.Y=1265.92mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C10-1(823.819mil,1290.354mil) on Top Layer And Track (792.323mil,1254.921mil)(792.323mil,1325.787mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=785.261mil|Location2.X=791.511mil|Location1.Y=1259.67mil|Location2.Y=1265.92mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=785.261mil|Location2.X=791.511mil|Location1.Y=1259.67mil|Location2.Y=1265.92mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C10-2(760.827mil,1290.354mil) on Top Layer And Track (792.323mil,1254.921mil)(792.323mil,1325.787mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=581.521mil|Location2.X=587.771mil|Location1.Y=2987.032mil|Location2.Y=2993.282mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=581.521mil|Location2.X=587.771mil|Location1.Y=2987.032mil|Location2.Y=2993.282mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C1-1(612.205mil,2962.598mil) on Top Layer And Track (576.772mil,2994.095mil)(647.638mil,2994.095mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=702.584mil|Location2.X=708.834mil|Location1.Y=1155.34mil|Location2.Y=1161.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=702.584mil|Location2.X=708.834mil|Location1.Y=1155.34mil|Location2.Y=1161.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C11-1(733.268mil,1186.024mil) on Top Layer And Track (701.772mil,1150.591mil)(701.772mil,1221.457mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=694.71mil|Location2.X=700.96mil|Location1.Y=1155.34mil|Location2.Y=1161.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=694.71mil|Location2.X=700.96mil|Location1.Y=1155.34mil|Location2.Y=1161.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C11-2(670.276mil,1186.024mil) on Top Layer And Track (701.772mil,1150.591mil)(701.772mil,1221.457mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=636.639mil|Location2.X=642.889mil|Location1.Y=2994.907mil|Location2.Y=3001.157mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=636.639mil|Location2.X=642.889mil|Location1.Y=2994.907mil|Location2.Y=3001.157mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C1-2(612.205mil,3025.59mil) on Top Layer And Track (576.772mil,2994.095mil)(647.638mil,2994.095mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=702.584mil|Location2.X=708.834mil|Location1.Y=1069.71mil|Location2.Y=1075.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=702.584mil|Location2.X=708.834mil|Location1.Y=1069.71mil|Location2.Y=1075.96mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C12-1(733.268mil,1100.394mil) on Top Layer And Track (701.772mil,1064.961mil)(701.772mil,1135.827mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=694.71mil|Location2.X=700.96mil|Location1.Y=1069.71mil|Location2.Y=1075.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=694.71mil|Location2.X=700.96mil|Location1.Y=1069.71mil|Location2.Y=1075.96mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C12-2(670.276mil,1100.394mil) on Top Layer And Track (701.772mil,1064.961mil)(701.772mil,1135.827mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=973.253mil|Location2.X=979.503mil|Location1.Y=1481.127mil|Location2.Y=1487.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=973.253mil|Location2.X=979.503mil|Location1.Y=1481.127mil|Location2.Y=1487.377mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C14-1(948.819mil,1511.811mil) on Top Layer And Track (913.386mil,1480.315mil)(984.252mil,1480.315mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=918.135mil|Location2.X=924.385mil|Location1.Y=1473.253mil|Location2.Y=1479.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=918.135mil|Location2.X=924.385mil|Location1.Y=1473.253mil|Location2.Y=1479.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C14-2(948.819mil,1448.819mil) on Top Layer And Track (913.386mil,1480.315mil)(984.252mil,1480.315mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=785.261mil|Location2.X=791.511mil|Location1.Y=1341.363mil|Location2.Y=1347.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=785.261mil|Location2.X=791.511mil|Location1.Y=1341.363mil|Location2.Y=1347.613mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C15-1(760.827mil,1372.047mil) on Top Layer And Track (792.323mil,1336.614mil)(792.323mil,1407.48mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.135mil|Location2.X=799.385mil|Location1.Y=1341.363mil|Location2.Y=1347.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.135mil|Location2.X=799.385mil|Location1.Y=1341.363mil|Location2.Y=1347.613mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C15-2(823.819mil,1372.047mil) on Top Layer And Track (792.323mil,1336.614mil)(792.323mil,1407.48mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1859.08mil|Location2.X=1865.33mil|Location1.Y=1607.111mil|Location2.Y=1613.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1859.08mil|Location2.X=1865.33mil|Location1.Y=1607.111mil|Location2.Y=1613.361mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C16-1(1889.764mil,1582.677mil) on Bottom Layer And Track (1854.331mil,1614.173mil)(1925.197mil,1614.173mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.198mil|Location2.X=1920.448mil|Location1.Y=1614.985mil|Location2.Y=1621.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.198mil|Location2.X=1920.448mil|Location1.Y=1614.985mil|Location2.Y=1621.235mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C16-2(1889.764mil,1645.669mil) on Bottom Layer And Track (1854.331mil,1614.173mil)(1925.197mil,1614.173mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.655mil|Location2.X=1766.905mil|Location1.Y=1607.111mil|Location2.Y=1613.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.655mil|Location2.X=1766.905mil|Location1.Y=1607.111mil|Location2.Y=1613.361mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C17-1(1791.339mil,1582.677mil) on Bottom Layer And Track (1755.906mil,1614.173mil)(1826.772mil,1614.173mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1815.773mil|Location2.X=1822.023mil|Location1.Y=1614.985mil|Location2.Y=1621.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1815.773mil|Location2.X=1822.023mil|Location1.Y=1614.985mil|Location2.Y=1621.235mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C17-2(1791.339mil,1645.669mil) on Bottom Layer And Track (1755.906mil,1614.173mil)(1826.772mil,1614.173mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=891.56mil|Location2.X=897.81mil|Location1.Y=1821.678mil|Location2.Y=1827.928mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=891.56mil|Location2.X=897.81mil|Location1.Y=1821.678mil|Location2.Y=1827.928mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C18-1(867.126mil,1852.362mil) on Top Layer And Track (831.693mil,1820.866mil)(902.559mil,1820.866mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=836.442mil|Location2.X=842.692mil|Location1.Y=1813.804mil|Location2.Y=1820.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=836.442mil|Location2.X=842.692mil|Location1.Y=1813.804mil|Location2.Y=1820.054mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C18-2(867.126mil,1789.37mil) on Top Layer And Track (831.693mil,1820.866mil)(902.559mil,1820.866mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2512.623mil|Location2.X=2518.873mil|Location1.Y=1563.804mil|Location2.Y=1570.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2512.623mil|Location2.X=2518.873mil|Location1.Y=1563.804mil|Location2.Y=1570.054mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C19-1(2543.307mil,1539.37mil) on Top Layer And Track (2507.874mil,1570.866mil)(2578.74mil,1570.866mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2567.741mil|Location2.X=2573.991mil|Location1.Y=1571.678mil|Location2.Y=1577.928mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2567.741mil|Location2.X=2573.991mil|Location1.Y=1571.678mil|Location2.Y=1577.928mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C19-2(2543.307mil,1602.362mil) on Top Layer And Track (2507.874mil,1570.866mil)(2578.74mil,1570.866mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2618.922mil|Location2.X=2625.172mil|Location1.Y=1107.111mil|Location2.Y=1113.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2618.922mil|Location2.X=2625.172mil|Location1.Y=1107.111mil|Location2.Y=1113.361mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C20-1(2594.488mil,1137.795mil) on Top Layer And Track (2559.055mil,1106.299mil)(2629.921mil,1106.299mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2563.804mil|Location2.X=2570.054mil|Location1.Y=1099.237mil|Location2.Y=1105.487mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2563.804mil|Location2.X=2570.054mil|Location1.Y=1099.237mil|Location2.Y=1105.487mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C20-2(2594.488mil,1074.803mil) on Top Layer And Track (2559.055mil,1106.299mil)(2629.921mil,1106.299mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=477.19mil|Location2.X=483.44mil|Location1.Y=2989.001mil|Location2.Y=2995.251mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=477.19mil|Location2.X=483.44mil|Location1.Y=2989.001mil|Location2.Y=2995.251mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C2-1(507.874mil,2964.567mil) on Top Layer And Track (472.441mil,2996.063mil)(543.307mil,2996.063mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2939.788mil|Location2.X=2946.038mil|Location1.Y=2034.277mil|Location2.Y=2040.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2939.788mil|Location2.X=2946.038mil|Location1.Y=2034.277mil|Location2.Y=2040.527mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C21-1(2970.472mil,2064.961mil) on Top Layer And Track (2938.976mil,2029.528mil)(2938.976mil,2100.394mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2931.914mil|Location2.X=2938.164mil|Location1.Y=2034.277mil|Location2.Y=2040.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2931.914mil|Location2.X=2938.164mil|Location1.Y=2034.277mil|Location2.Y=2040.527mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C21-2(2907.48mil,2064.961mil) on Top Layer And Track (2938.976mil,2029.528mil)(2938.976mil,2100.394mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=532.308mil|Location2.X=538.558mil|Location1.Y=2996.875mil|Location2.Y=3003.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=532.308mil|Location2.X=538.558mil|Location1.Y=2996.875mil|Location2.Y=3003.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C2-2(507.874mil,3027.559mil) on Top Layer And Track (472.441mil,2996.063mil)(543.307mil,2996.063mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.883mil|Location2.X=2940.133mil|Location1.Y=1752.781mil|Location2.Y=1759.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.883mil|Location2.X=2940.133mil|Location1.Y=1752.781mil|Location2.Y=1759.031mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C22-1(2909.449mil,1783.465mil) on Top Layer And Track (2940.945mil,1748.032mil)(2940.945mil,1818.898mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2941.757mil|Location2.X=2948.007mil|Location1.Y=1752.781mil|Location2.Y=1759.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2941.757mil|Location2.X=2948.007mil|Location1.Y=1752.781mil|Location2.Y=1759.031mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C22-2(2972.441mil,1783.465mil) on Top Layer And Track (2940.945mil,1748.032mil)(2940.945mil,1818.898mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1969.316mil|Location2.X=1975.566mil|Location1.Y=1965.379mil|Location2.Y=1971.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1969.316mil|Location2.X=1975.566mil|Location1.Y=1965.379mil|Location2.Y=1971.629mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C3-1(2000mil,1940.945mil) on Top Layer And Track (1964.567mil,1972.441mil)(2035.433mil,1972.441mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2024.434mil|Location2.X=2030.684mil|Location1.Y=1973.253mil|Location2.Y=1979.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2024.434mil|Location2.X=2030.684mil|Location1.Y=1973.253mil|Location2.Y=1979.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C3-2(2000mil,2003.937mil) on Top Layer And Track (1964.567mil,1972.441mil)(2035.433mil,1972.441mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=471.284mil|Location2.X=477.534mil|Location1.Y=2484.08mil|Location2.Y=2490.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=471.284mil|Location2.X=477.534mil|Location1.Y=2484.08mil|Location2.Y=2490.33mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C4-1(501.968mil,2459.646mil) on Top Layer And Track (466.535mil,2491.142mil)(537.402mil,2491.142mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=526.402mil|Location2.X=532.652mil|Location1.Y=2491.954mil|Location2.Y=2498.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=526.402mil|Location2.X=532.652mil|Location1.Y=2491.954mil|Location2.Y=2498.204mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C4-2(501.968mil,2522.638mil) on Top Layer And Track (466.535mil,2491.142mil)(537.402mil,2491.142mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=768.529mil|Location2.X=774.779mil|Location1.Y=2731.127mil|Location2.Y=2737.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=768.529mil|Location2.X=774.779mil|Location1.Y=2731.127mil|Location2.Y=2737.377mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C5-1(799.213mil,2706.693mil) on Top Layer And Track (763.78mil,2738.189mil)(834.646mil,2738.189mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=823.647mil|Location2.X=829.897mil|Location1.Y=2739.001mil|Location2.Y=2745.251mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=823.647mil|Location2.X=829.897mil|Location1.Y=2739.001mil|Location2.Y=2745.251mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C5-2(799.213mil,2769.685mil) on Top Layer And Track (763.78mil,2738.189mil)(834.646mil,2738.189mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2309.867mil|Location2.X=2316.117mil|Location1.Y=353.174mil|Location2.Y=359.424mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2309.867mil|Location2.X=2316.117mil|Location1.Y=353.174mil|Location2.Y=359.424mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C8-1(2340.551mil,328.74mil) on Top Layer And Track (2305.118mil,360.236mil)(2375.984mil,360.236mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2364.985mil|Location2.X=2371.235mil|Location1.Y=361.048mil|Location2.Y=367.298mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2364.985mil|Location2.X=2371.235mil|Location1.Y=361.048mil|Location2.Y=367.298mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C8-2(2340.551mil,391.732mil) on Top Layer And Track (2305.118mil,360.236mil)(2375.984mil,360.236mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.623mil|Location2.X=2768.873mil|Location1.Y=353.174mil|Location2.Y=359.424mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.623mil|Location2.X=2768.873mil|Location1.Y=353.174mil|Location2.Y=359.424mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C9-1(2793.307mil,328.74mil) on Top Layer And Track (2757.874mil,360.236mil)(2828.74mil,360.236mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2817.741mil|Location2.X=2823.991mil|Location1.Y=361.048mil|Location2.Y=367.298mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2817.741mil|Location2.X=2823.991mil|Location1.Y=361.048mil|Location2.Y=367.298mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 5mil) Between Pad C9-2(2793.307mil,391.732mil) on Top Layer And Track (2757.874mil,360.236mil)(2828.74mil,360.236mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDOHIVFHOUCLZHHEK5W2ZOAJZCIBJQ1UQGQYG4CPCU310OS1JG1PO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=993.107mil|Location2.X=1037.951mil|Location1.Y=1430.738mil|Location2.Y=1500.348mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=993.107mil|Location2.X=1037.951mil|Location1.Y=1430.738mil|Location2.Y=1500.348mil|Absolute=True">Net Antennae: Via (1011.371mil,1449.002mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1520.122mil|Location2.X=1564.966mil|Location1.Y=1723.862mil|Location2.Y=1793.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1520.122mil|Location2.X=1564.966mil|Location1.Y=1723.862mil|Location2.Y=1793.472mil|Absolute=True">Net Antennae: Via (1538.386mil,1742.126mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1787.839mil|Location2.X=1832.682mil|Location1.Y=1723.862mil|Location2.Y=1793.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1787.839mil|Location2.X=1832.682mil|Location1.Y=1723.862mil|Location2.Y=1793.472mil|Absolute=True">Net Antennae: Via (1806.102mil,1742.126mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1981.736mil|Location2.X=2026.58mil|Location1.Y=1845.909mil|Location2.Y=1915.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1981.736mil|Location2.X=2026.58mil|Location1.Y=1845.909mil|Location2.Y=1915.52mil|Absolute=True">Net Antennae: Via (2000mil,1864.173mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2322.287mil|Location2.X=2367.131mil|Location1.Y=186.461mil|Location2.Y=256.071mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2322.287mil|Location2.X=2367.131mil|Location1.Y=186.461mil|Location2.Y=256.071mil|Absolute=True">Net Antennae: Via (2340.551mil,204.724mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.878mil|Location2.X=2392.722mil|Location1.Y=849.846mil|Location2.Y=919.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2347.878mil|Location2.X=2392.722mil|Location1.Y=849.846mil|Location2.Y=919.457mil|Absolute=True">Net Antennae: Via (2366.142mil,868.11mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2502.405mil|Location2.X=2547.249mil|Location1.Y=375.437mil|Location2.Y=445.047mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2502.405mil|Location2.X=2547.249mil|Location1.Y=375.437mil|Location2.Y=445.047mil|Absolute=True">Net Antennae: Via (2520.669mil,393.701mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2503.39mil|Location2.X=2548.234mil|Location1.Y=419.728mil|Location2.Y=489.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2503.39mil|Location2.X=2548.234mil|Location1.Y=419.728mil|Location2.Y=489.339mil|Absolute=True">Net Antennae: Via (2521.653mil,437.992mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2525.043mil|Location2.X=2569.887mil|Location1.Y=1425.634mil|Location2.Y=1495.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2525.043mil|Location2.X=2569.887mil|Location1.Y=1425.634mil|Location2.Y=1495.244mil|Absolute=True">Net Antennae: Via (2543.307mil,1443.898mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.571mil|Location2.X=2599.415mil|Location1.Y=373.469mil|Location2.Y=443.079mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2554.571mil|Location2.X=2599.415mil|Location1.Y=373.469mil|Location2.Y=443.079mil|Absolute=True">Net Antennae: Via (2572.835mil,391.732mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2555.555mil|Location2.X=2600.399mil|Location1.Y=419.728mil|Location2.Y=489.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2555.555mil|Location2.X=2600.399mil|Location1.Y=419.728mil|Location2.Y=489.339mil|Absolute=True">Net Antennae: Via (2573.819mil,437.992mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2575.24mil|Location2.X=2620.084mil|Location1.Y=1182.524mil|Location2.Y=1252.134mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2575.24mil|Location2.X=2620.084mil|Location1.Y=1182.524mil|Location2.Y=1252.134mil|Absolute=True">Net Antennae: Via (2593.504mil,1200.787mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2604.768mil|Location2.X=2649.612mil|Location1.Y=373.469mil|Location2.Y=443.079mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2604.768mil|Location2.X=2649.612mil|Location1.Y=373.469mil|Location2.Y=443.079mil|Absolute=True">Net Antennae: Via (2623.032mil,391.732mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2604.768mil|Location2.X=2649.612mil|Location1.Y=419.728mil|Location2.Y=489.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2604.768mil|Location2.X=2649.612mil|Location1.Y=419.728mil|Location2.Y=489.339mil|Absolute=True">Net Antennae: Via (2623.032mil,437.992mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2775.043mil|Location2.X=2819.887mil|Location1.Y=182.524mil|Location2.Y=252.134mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2775.043mil|Location2.X=2819.887mil|Location1.Y=182.524mil|Location2.Y=252.134mil|Absolute=True">Net Antennae: Via (2793.307mil,200.787mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=572.287mil|Location2.X=617.131mil|Location1.Y=1313.429mil|Location2.Y=1383.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=572.287mil|Location2.X=617.131mil|Location1.Y=1313.429mil|Location2.Y=1383.039mil|Absolute=True">Net Antennae: Via (590.551mil,1331.693mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=586.067mil|Location2.X=630.911mil|Location1.Y=2218.941mil|Location2.Y=2288.551mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=586.067mil|Location2.X=630.911mil|Location1.Y=2218.941mil|Location2.Y=2288.551mil|Absolute=True">Net Antennae: Via (604.331mil,2237.205mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=650.043mil|Location2.X=694.887mil|Location1.Y=1223.862mil|Location2.Y=1293.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=650.043mil|Location2.X=694.887mil|Location1.Y=1223.862mil|Location2.Y=1293.472mil|Absolute=True">Net Antennae: Via (668.307mil,1242.126mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=652.012mil|Location2.X=696.856mil|Location1.Y=1417.76mil|Location2.Y=1487.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=652.012mil|Location2.X=696.856mil|Location1.Y=1417.76mil|Location2.Y=1487.37mil|Absolute=True">Net Antennae: Via (670.276mil,1436.024mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=656.933mil|Location2.X=701.777mil|Location1.Y=2221.894mil|Location2.Y=2291.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=656.933mil|Location2.X=701.777mil|Location1.Y=2221.894mil|Location2.Y=2291.504mil|Absolute=True">Net Antennae: Via (675.197mil,2240.157mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=830.161mil|Location2.X=875.005mil|Location1.Y=1082.13mil|Location2.Y=1151.74mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=830.161mil|Location2.X=875.005mil|Location1.Y=1082.13mil|Location2.Y=1151.74mil|Absolute=True">Net Antennae: Via (848.425mil,1100.394mil) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEZIWB34JNIIFMGPMTATLXKGFQEXBFXGHADQ5PWILNH0VJ4FUTD1J"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.356mil|Location2.X=1135.605mil|Location1.Y=3263.814mil|Location2.Y=3270.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.356mil|Location2.X=1135.605mil|Location1.Y=3263.814mil|Location2.Y=3270.063mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 7.874mil) Between Board Edge And Track (1132.48mil,3117.323mil)(1132.48mil,3381.89mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1483.686mil|Location2.X=1489.936mil|Location1.Y=3378.765mil|Location2.Y=3385.014mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1483.686mil|Location2.X=1489.936mil|Location1.Y=3378.765mil|Location2.Y=3385.014mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 7.874mil) Between Board Edge And Track (1132.48mil,3381.89mil)(1841.142mil,3381.89mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1838.017mil|Location2.X=1844.266mil|Location1.Y=3263.814mil|Location2.Y=3270.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1838.017mil|Location2.X=1844.266mil|Location1.Y=3263.814mil|Location2.Y=3270.063mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 7.874mil) Between Board Edge And Track (1841.142mil,3117.323mil)(1841.142mil,3381.89mil) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
