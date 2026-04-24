@@ -1,0 +1,530 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4/24/2026</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">8:33:22 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc" class="file"><acronym title="C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc">C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">62</td></tr>
+</table>
+</td>
+</table><a name="IDJOVJJECCZI1KDX4UKQSCIJ4U3LIB4BPKX5EUREMIS21EKW31INNO"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0IBXBLBSZJKJGYSNQRC25DWQKNGAOG0Z4ZQPBZKW5PSTL5F3QCMK">Clearance Constraint (Gap=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGH1VCNTBQBCIGKTDHC1R43ZVBPRPIKHIMJN1AEOXEGEIFLG5T4CG">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDL5PY12J40Y2WDUZZ5XS54MHVNOJDGGQPMCZTSAHW2CB0L40XON3I">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXLLO1TOKNEQ1EZXDMOBYPHILNBQM3I3OH0U4Q1CGCXPNKE2BQKWL">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDPBYUMRX25XTJX0VJF1ELJH1ABYF3MZEOLO4KMHHSI0HQ3EJBVOL">Width Constraint (Min=0.127mm) (Max=25.4mm) (Preferred=0.127mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDU3ZY3RJTAF3GPV405VVEPNPT3CA4PXCLOWLG4MOKAZRTURFUWWMG">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDK0ZHIMHSL4C1HDDOGPNP1Q5UHKNYIGD4THNBB4IWK0RUHN01RQFM">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDG2KHGIWBMRUHJHZL3G55YG1FVBAM302RLJLAGAFRNJGWCS3SZJCG">Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.127mm) (Air Gap=0.127mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMYDWZBLQBCUCOTX1RVNDOIWGGDXEGJ1YSUYM0OKHUHEZABB0XSD">Minimum Annular Ring (Minimum=0.076mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3XJB4TIKMYF3DE3PDXG0CJSHHJFNKKZM3Q3IE4KAL3QOFHYLPDUE">Hole Size Constraint (Min=0.3mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDB3J3VLIDNOWNLD0KUGQCU3AJJGDXQGK0HLLP0LPZYHDHGFLWIGXK">Hole To Hole Clearance (Gap=0.25mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGSL4XSZ2IUVQXH1DKJW4F2IEMLR1UIZGIXW2ZLH3X41ZIE3E3KJ">Minimum Solder Mask Sliver (Gap=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJEOQ21YH5ZMQH3MQCGLFOI3RFOLWILIEQKR3NDCMA1K241WM3YMK">Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)</a></td>
+<td class="column2">62</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQKQXHYVITHQEFLO1ADE2CO15QC2SS2SCMWSR4QML1SKRPPSJZYFG">Silk to Silk (Clearance=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0MGHT5EKCDAQFPCD03MYMULZVDIWAYICCX4HYFJ5IXC4DZWBLB1G">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZPRKB0KT1BLZN0FDTJSLZFKBFL55WY4RBZQVP3J4PQ5ZCQ5NI5EB">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDADAMTABUAT2WK0DMEULB332BFJ1W2JWLKF1B4CIJKKXVDICHAA0B">Height Constraint (Min=0mm) (Max=1816.048mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">62</td>
+</tr>
+</table><br><a name="IDJEOQ21YH5ZMQH3MQCGLFOI3RFOLWILIEQKR3NDCMA1K241WM3YMK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=626.073mil|Location2.X=632.323mil|Location1.Y=2403.431mil|Location2.Y=2409.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=626.073mil|Location2.X=632.323mil|Location1.Y=2403.431mil|Location2.Y=2409.681mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Arc (16.5mm,61.175mm) on Top Overlay And Pad SW2-2(15.15mm,61.075mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=626.068mil|Location2.X=632.318mil|Location1.Y=2517.432mil|Location2.Y=2523.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=626.068mil|Location2.X=632.318mil|Location1.Y=2517.432mil|Location2.Y=2523.682mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Arc (16.5mm,63.975mm) on Top Overlay And Pad SW2-4(15.15mm,64.075mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=777.125mil|Location2.X=783.375mil|Location1.Y=2403.431mil|Location2.Y=2409.681mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=777.125mil|Location2.X=783.375mil|Location1.Y=2403.431mil|Location2.Y=2409.681mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Arc (19.3mm,61.175mm) on Top Overlay And Pad SW2-1(20.65mm,61.075mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=777.13mil|Location2.X=783.38mil|Location1.Y=2517.432mil|Location2.Y=2523.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=777.13mil|Location2.X=783.38mil|Location1.Y=2517.432mil|Location2.Y=2523.682mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Arc (19.3mm,63.975mm) on Top Overlay And Pad SW2-3(20.65mm,64.075mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.947mil|Location2.X=2140.197mil|Location1.Y=1888.667mil|Location2.Y=1894.917mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.947mil|Location2.X=2140.197mil|Location1.Y=1888.667mil|Location2.Y=1894.917mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Arc (54.8mm,48.1mm) on Top Overlay And Pad SW1-2(53.45mm,48mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.942mil|Location2.X=2140.192mil|Location1.Y=2002.668mil|Location2.Y=2008.918mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.942mil|Location2.X=2140.192mil|Location1.Y=2002.668mil|Location2.Y=2008.918mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Arc (54.8mm,50.9mm) on Top Overlay And Pad SW1-4(53.45mm,51mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2284.999mil|Location2.X=2291.249mil|Location1.Y=1888.667mil|Location2.Y=1894.917mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2284.999mil|Location2.X=2291.249mil|Location1.Y=1888.667mil|Location2.Y=1894.917mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Arc (57.6mm,48.1mm) on Top Overlay And Pad SW1-1(58.95mm,48mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2285.005mil|Location2.X=2291.255mil|Location1.Y=2002.668mil|Location2.Y=2008.918mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2285.005mil|Location2.X=2291.255mil|Location1.Y=2002.668mil|Location2.Y=2008.918mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Arc (57.6mm,50.9mm) on Top Overlay And Pad SW1-3(58.95mm,51mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.135mil|Location2.X=799.385mil|Location1.Y=1259.67mil|Location2.Y=1265.92mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.135mil|Location2.X=799.385mil|Location1.Y=1259.67mil|Location2.Y=1265.92mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C10-1(20.925mm,32.775mm) on Top Layer And Track (20.125mm,31.875mm)(20.125mm,33.675mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=785.261mil|Location2.X=791.511mil|Location1.Y=1259.67mil|Location2.Y=1265.92mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=785.261mil|Location2.X=791.511mil|Location1.Y=1259.67mil|Location2.Y=1265.92mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C10-2(19.325mm,32.775mm) on Top Layer And Track (20.125mm,31.875mm)(20.125mm,33.675mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=581.521mil|Location2.X=587.771mil|Location1.Y=2987.032mil|Location2.Y=2993.282mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=581.521mil|Location2.X=587.771mil|Location1.Y=2987.032mil|Location2.Y=2993.282mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C1-1(15.55mm,75.25mm) on Top Layer And Track (14.65mm,76.05mm)(16.45mm,76.05mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=702.584mil|Location2.X=708.834mil|Location1.Y=1155.34mil|Location2.Y=1161.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=702.584mil|Location2.X=708.834mil|Location1.Y=1155.34mil|Location2.Y=1161.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C11-1(18.625mm,30.125mm) on Top Layer And Track (17.825mm,29.225mm)(17.825mm,31.025mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=694.71mil|Location2.X=700.96mil|Location1.Y=1155.34mil|Location2.Y=1161.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=694.71mil|Location2.X=700.96mil|Location1.Y=1155.34mil|Location2.Y=1161.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C11-2(17.025mm,30.125mm) on Top Layer And Track (17.825mm,29.225mm)(17.825mm,31.025mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=636.639mil|Location2.X=642.889mil|Location1.Y=2994.907mil|Location2.Y=3001.157mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=636.639mil|Location2.X=642.889mil|Location1.Y=2994.907mil|Location2.Y=3001.157mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C1-2(15.55mm,76.85mm) on Top Layer And Track (14.65mm,76.05mm)(16.45mm,76.05mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=702.584mil|Location2.X=708.834mil|Location1.Y=1069.71mil|Location2.Y=1075.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=702.584mil|Location2.X=708.834mil|Location1.Y=1069.71mil|Location2.Y=1075.96mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C12-1(18.625mm,27.95mm) on Top Layer And Track (17.825mm,27.05mm)(17.825mm,28.85mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=694.71mil|Location2.X=700.96mil|Location1.Y=1069.71mil|Location2.Y=1075.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=694.71mil|Location2.X=700.96mil|Location1.Y=1069.71mil|Location2.Y=1075.96mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C12-2(17.025mm,27.95mm) on Top Layer And Track (17.825mm,27.05mm)(17.825mm,28.85mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=973.253mil|Location2.X=979.503mil|Location1.Y=1481.127mil|Location2.Y=1487.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=973.253mil|Location2.X=979.503mil|Location1.Y=1481.127mil|Location2.Y=1487.377mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C14-1(24.1mm,38.4mm) on Top Layer And Track (23.2mm,37.6mm)(25mm,37.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=918.135mil|Location2.X=924.385mil|Location1.Y=1473.253mil|Location2.Y=1479.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=918.135mil|Location2.X=924.385mil|Location1.Y=1473.253mil|Location2.Y=1479.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C14-2(24.1mm,36.8mm) on Top Layer And Track (23.2mm,37.6mm)(25mm,37.6mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=785.261mil|Location2.X=791.511mil|Location1.Y=1341.363mil|Location2.Y=1347.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=785.261mil|Location2.X=791.511mil|Location1.Y=1341.363mil|Location2.Y=1347.613mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C15-1(19.325mm,34.85mm) on Top Layer And Track (20.125mm,33.95mm)(20.125mm,35.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.135mil|Location2.X=799.385mil|Location1.Y=1341.363mil|Location2.Y=1347.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.135mil|Location2.X=799.385mil|Location1.Y=1341.363mil|Location2.Y=1347.613mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C15-2(20.925mm,34.85mm) on Top Layer And Track (20.125mm,33.95mm)(20.125mm,35.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1859.08mil|Location2.X=1865.33mil|Location1.Y=1607.111mil|Location2.Y=1613.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1859.08mil|Location2.X=1865.33mil|Location1.Y=1607.111mil|Location2.Y=1613.361mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C16-1(48mm,40.2mm) on Bottom Layer And Track (47.1mm,41mm)(48.9mm,41mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.198mil|Location2.X=1920.448mil|Location1.Y=1614.985mil|Location2.Y=1621.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.198mil|Location2.X=1920.448mil|Location1.Y=1614.985mil|Location2.Y=1621.235mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C16-2(48mm,41.8mm) on Bottom Layer And Track (47.1mm,41mm)(48.9mm,41mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.655mil|Location2.X=1766.905mil|Location1.Y=1607.111mil|Location2.Y=1613.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.655mil|Location2.X=1766.905mil|Location1.Y=1607.111mil|Location2.Y=1613.361mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C17-1(45.5mm,40.2mm) on Bottom Layer And Track (44.6mm,41mm)(46.4mm,41mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1815.773mil|Location2.X=1822.023mil|Location1.Y=1614.985mil|Location2.Y=1621.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1815.773mil|Location2.X=1822.023mil|Location1.Y=1614.985mil|Location2.Y=1621.235mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C17-2(45.5mm,41.8mm) on Bottom Layer And Track (44.6mm,41mm)(46.4mm,41mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=895.497mil|Location2.X=901.747mil|Location1.Y=2146.481mil|Location2.Y=2152.731mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=895.497mil|Location2.X=901.747mil|Location1.Y=2146.481mil|Location2.Y=2152.731mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C18-1(22.125mm,55.3mm) on Top Layer And Track (21.225mm,54.5mm)(23.025mm,54.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=840.379mil|Location2.X=846.629mil|Location1.Y=2138.607mil|Location2.Y=2144.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=840.379mil|Location2.X=846.629mil|Location1.Y=2138.607mil|Location2.Y=2144.857mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C18-2(22.125mm,53.7mm) on Top Layer And Track (21.225mm,54.5mm)(23.025mm,54.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2512.623mil|Location2.X=2518.873mil|Location1.Y=1563.804mil|Location2.Y=1570.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2512.623mil|Location2.X=2518.873mil|Location1.Y=1563.804mil|Location2.Y=1570.054mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C19-1(64.6mm,39.1mm) on Top Layer And Track (63.7mm,39.9mm)(65.5mm,39.9mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2567.741mil|Location2.X=2573.991mil|Location1.Y=1571.678mil|Location2.Y=1577.928mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2567.741mil|Location2.X=2573.991mil|Location1.Y=1571.678mil|Location2.Y=1577.928mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C19-2(64.6mm,40.7mm) on Top Layer And Track (63.7mm,39.9mm)(65.5mm,39.9mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2618.922mil|Location2.X=2625.172mil|Location1.Y=1107.111mil|Location2.Y=1113.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2618.922mil|Location2.X=2625.172mil|Location1.Y=1107.111mil|Location2.Y=1113.361mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C20-1(65.9mm,28.9mm) on Top Layer And Track (65mm,28.1mm)(66.8mm,28.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2563.804mil|Location2.X=2570.054mil|Location1.Y=1099.237mil|Location2.Y=1105.487mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2563.804mil|Location2.X=2570.054mil|Location1.Y=1099.237mil|Location2.Y=1105.487mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C20-2(65.9mm,27.3mm) on Top Layer And Track (65mm,28.1mm)(66.8mm,28.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=477.19mil|Location2.X=483.44mil|Location1.Y=2989.001mil|Location2.Y=2995.251mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=477.19mil|Location2.X=483.44mil|Location1.Y=2989.001mil|Location2.Y=2995.251mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C2-1(12.9mm,75.3mm) on Top Layer And Track (12mm,76.1mm)(13.8mm,76.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2939.788mil|Location2.X=2946.038mil|Location1.Y=2034.277mil|Location2.Y=2040.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2939.788mil|Location2.X=2946.038mil|Location1.Y=2034.277mil|Location2.Y=2040.527mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C21-1(75.45mm,52.45mm) on Top Layer And Track (74.65mm,51.55mm)(74.65mm,53.35mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2931.914mil|Location2.X=2938.164mil|Location1.Y=2034.277mil|Location2.Y=2040.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2931.914mil|Location2.X=2938.164mil|Location1.Y=2034.277mil|Location2.Y=2040.527mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C21-2(73.85mm,52.45mm) on Top Layer And Track (74.65mm,51.55mm)(74.65mm,53.35mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=532.308mil|Location2.X=538.558mil|Location1.Y=2996.875mil|Location2.Y=3003.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=532.308mil|Location2.X=538.558mil|Location1.Y=2996.875mil|Location2.Y=3003.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C2-2(12.9mm,76.9mm) on Top Layer And Track (12mm,76.1mm)(13.8mm,76.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.883mil|Location2.X=2940.133mil|Location1.Y=1752.781mil|Location2.Y=1759.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.883mil|Location2.X=2940.133mil|Location1.Y=1752.781mil|Location2.Y=1759.031mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C22-1(73.9mm,45.3mm) on Top Layer And Track (74.7mm,44.4mm)(74.7mm,46.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2941.757mil|Location2.X=2948.007mil|Location1.Y=1752.781mil|Location2.Y=1759.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2941.757mil|Location2.X=2948.007mil|Location1.Y=1752.781mil|Location2.Y=1759.031mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C22-2(75.5mm,45.3mm) on Top Layer And Track (74.7mm,44.4mm)(74.7mm,46.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1969.316mil|Location2.X=1975.566mil|Location1.Y=1965.379mil|Location2.Y=1971.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1969.316mil|Location2.X=1975.566mil|Location1.Y=1965.379mil|Location2.Y=1971.629mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C3-1(50.8mm,49.3mm) on Top Layer And Track (49.9mm,50.1mm)(51.7mm,50.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2024.434mil|Location2.X=2030.684mil|Location1.Y=1973.253mil|Location2.Y=1979.503mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2024.434mil|Location2.X=2030.684mil|Location1.Y=1973.253mil|Location2.Y=1979.503mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C3-2(50.8mm,50.9mm) on Top Layer And Track (49.9mm,50.1mm)(51.7mm,50.1mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=471.284mil|Location2.X=477.534mil|Location1.Y=2484.08mil|Location2.Y=2490.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=471.284mil|Location2.X=477.534mil|Location1.Y=2484.08mil|Location2.Y=2490.33mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C4-1(12.75mm,62.475mm) on Top Layer And Track (11.85mm,63.275mm)(13.65mm,63.275mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=526.402mil|Location2.X=532.652mil|Location1.Y=2491.954mil|Location2.Y=2498.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=526.402mil|Location2.X=532.652mil|Location1.Y=2491.954mil|Location2.Y=2498.204mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C4-2(12.75mm,64.075mm) on Top Layer And Track (11.85mm,63.275mm)(13.65mm,63.275mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=768.529mil|Location2.X=774.779mil|Location1.Y=2731.127mil|Location2.Y=2737.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=768.529mil|Location2.X=774.779mil|Location1.Y=2731.127mil|Location2.Y=2737.377mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C5-1(20.3mm,68.75mm) on Top Layer And Track (19.4mm,69.55mm)(21.2mm,69.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=823.647mil|Location2.X=829.897mil|Location1.Y=2739.001mil|Location2.Y=2745.251mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=823.647mil|Location2.X=829.897mil|Location1.Y=2739.001mil|Location2.Y=2745.251mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C5-2(20.3mm,70.35mm) on Top Layer And Track (19.4mm,69.55mm)(21.2mm,69.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2309.867mil|Location2.X=2316.117mil|Location1.Y=353.174mil|Location2.Y=359.424mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2309.867mil|Location2.X=2316.117mil|Location1.Y=353.174mil|Location2.Y=359.424mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C8-1(59.45mm,8.35mm) on Top Layer And Track (58.55mm,9.15mm)(60.35mm,9.15mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2364.985mil|Location2.X=2371.235mil|Location1.Y=361.048mil|Location2.Y=367.298mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2364.985mil|Location2.X=2371.235mil|Location1.Y=361.048mil|Location2.Y=367.298mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C8-2(59.45mm,9.95mm) on Top Layer And Track (58.55mm,9.15mm)(60.35mm,9.15mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.623mil|Location2.X=2768.873mil|Location1.Y=353.174mil|Location2.Y=359.424mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.623mil|Location2.X=2768.873mil|Location1.Y=353.174mil|Location2.Y=359.424mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C9-1(70.95mm,8.35mm) on Top Layer And Track (70.05mm,9.15mm)(71.85mm,9.15mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2817.741mil|Location2.X=2823.991mil|Location1.Y=361.048mil|Location2.Y=367.298mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2817.741mil|Location2.X=2823.991mil|Location1.Y=361.048mil|Location2.Y=367.298mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C9-2(70.95mm,9.95mm) on Top Layer And Track (70.05mm,9.15mm)(71.85mm,9.15mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.755mil|Location2.X=2303.259mil|Location1.Y=1860.574mil|Location2.Y=1868.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.755mil|Location2.X=2303.259mil|Location1.Y=1860.574mil|Location2.Y=1868.483mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.127mm) Between Pad SW1-1(58.95mm,48mm) on Multi-Layer And Track (54.156mm,47.25mm)(58.244mm,47.25mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2301.517mil|Location2.X=2311.67mil|Location1.Y=1915.999mil|Location2.Y=1923.375mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2301.517mil|Location2.X=2311.67mil|Location1.Y=1915.999mil|Location2.Y=1923.375mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.127mm) Between Pad SW1-1(58.95mm,48mm) on Multi-Layer And Track (58.45mm,48.902mm)(58.45mm,50.099mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.687mil|Location2.X=2123.707mil|Location1.Y=1917.222mil|Location2.Y=1924.414mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.687mil|Location2.X=2123.707mil|Location1.Y=1917.222mil|Location2.Y=1924.414mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.127mm) Between Pad SW1-2(53.45mm,48mm) on Multi-Layer And Track (53.8mm,48.97mm)(53.8mm,50.03mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.192mil|Location2.X=2132.627mil|Location1.Y=1862.233mil|Location2.Y=1870.214mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.192mil|Location2.X=2132.627mil|Location1.Y=1862.233mil|Location2.Y=1870.214mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.127mm) Between Pad SW1-2(53.45mm,48mm) on Multi-Layer And Track (54.156mm,47.25mm)(58.244mm,47.25mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.744mil|Location2.X=2303.18mil|Location1.Y=2029.155mil|Location2.Y=2037.136mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.744mil|Location2.X=2303.18mil|Location1.Y=2029.155mil|Location2.Y=2037.136mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.127mm) Between Pad SW1-3(58.95mm,51mm) on Multi-Layer And Track (54.157mm,51.75mm)(58.243mm,51.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2301.517mil|Location2.X=2311.719mil|Location1.Y=1974.359mil|Location2.Y=1981.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2301.517mil|Location2.X=2311.719mil|Location1.Y=1974.359mil|Location2.Y=1981.649mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.127mm) Between Pad SW1-3(58.95mm,51mm) on Multi-Layer And Track (58.45mm,48.902mm)(58.45mm,50.099mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.687mil|Location2.X=2123.674mil|Location1.Y=1973.234mil|Location2.Y=1980.521mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.687mil|Location2.X=2123.674mil|Location1.Y=1973.234mil|Location2.Y=1980.521mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.127mm) Between Pad SW1-4(53.45mm,51mm) on Multi-Layer And Track (53.8mm,48.97mm)(53.8mm,50.03mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.203mil|Location2.X=2132.707mil|Location1.Y=2027.497mil|Location2.Y=2035.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.203mil|Location2.X=2132.707mil|Location1.Y=2027.497mil|Location2.Y=2035.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.127mm) Between Pad SW1-4(53.45mm,51mm) on Multi-Layer And Track (54.157mm,51.75mm)(58.243mm,51.75mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=786.881mil|Location2.X=795.385mil|Location1.Y=2375.338mil|Location2.Y=2383.246mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=786.881mil|Location2.X=795.385mil|Location1.Y=2375.338mil|Location2.Y=2383.246mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.127mm) Between Pad SW2-1(20.65mm,61.075mm) on Multi-Layer And Track (15.856mm,60.325mm)(19.944mm,60.325mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.642mil|Location2.X=803.795mil|Location1.Y=2430.763mil|Location2.Y=2438.139mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.642mil|Location2.X=803.795mil|Location1.Y=2430.763mil|Location2.Y=2438.139mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.127mm) Between Pad SW2-1(20.65mm,61.075mm) on Multi-Layer And Track (20.15mm,61.977mm)(20.15mm,63.174mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=604.813mil|Location2.X=615.832mil|Location1.Y=2431.985mil|Location2.Y=2439.177mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=604.813mil|Location2.X=615.832mil|Location1.Y=2431.985mil|Location2.Y=2439.177mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.127mm) Between Pad SW2-2(15.15mm,61.075mm) on Multi-Layer And Track (15.5mm,62.045mm)(15.5mm,63.105mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=616.317mil|Location2.X=624.753mil|Location1.Y=2376.996mil|Location2.Y=2384.978mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=616.317mil|Location2.X=624.753mil|Location1.Y=2376.996mil|Location2.Y=2384.978mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.127mm) Between Pad SW2-2(15.15mm,61.075mm) on Multi-Layer And Track (15.856mm,60.325mm)(19.944mm,60.325mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=786.87mil|Location2.X=795.305mil|Location1.Y=2543.919mil|Location2.Y=2551.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=786.87mil|Location2.X=795.305mil|Location1.Y=2543.919mil|Location2.Y=2551.9mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.127mm) Between Pad SW2-3(20.65mm,64.075mm) on Multi-Layer And Track (15.857mm,64.825mm)(19.943mm,64.825mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.642mil|Location2.X=803.845mil|Location1.Y=2489.123mil|Location2.Y=2496.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=793.642mil|Location2.X=803.845mil|Location1.Y=2489.123mil|Location2.Y=2496.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.127mm) Between Pad SW2-3(20.65mm,64.075mm) on Multi-Layer And Track (20.15mm,61.977mm)(20.15mm,63.174mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=604.813mil|Location2.X=615.8mil|Location1.Y=2487.998mil|Location2.Y=2495.285mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=604.813mil|Location2.X=615.8mil|Location1.Y=2487.998mil|Location2.Y=2495.285mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.127mm) Between Pad SW2-4(15.15mm,64.075mm) on Multi-Layer And Track (15.5mm,62.045mm)(15.5mm,63.105mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=616.328mil|Location2.X=624.832mil|Location1.Y=2542.26mil|Location2.Y=2550.169mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=616.328mil|Location2.X=624.832mil|Location1.Y=2542.26mil|Location2.Y=2550.169mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.103mm &lt; 0.127mm) Between Pad SW2-4(15.15mm,64.075mm) on Multi-Layer And Track (15.857mm,64.825mm)(19.943mm,64.825mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.103mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
