@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : D:\FROM\Lumon_Bot_PCB\Main_Controller\EDR.PcbDoc
-Date     : 4/26/2026
-Time     : 6:07:09 PM
+Date     : 4/27/2026
+Time     : 12:54:09 AM
 
 Processing Rule : Clearance Constraint (Gap=4mil) (All),(All)
 Rule Violations :0
@@ -78,4 +78,4 @@ Rule Violations :0
 
 Violations Detected : 0
 Waived Violations : 0
-Time Elapsed        : 00:00:00
+Time Elapsed        : 00:00:01
