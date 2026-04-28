@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
-PCB File : D:\Nilesh\UOM_Projects\EDR\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc
-Date     : 2026-04-27
-Time     : 1:11:35 PM
+PCB File : C:\Lumon_Bot_PCB\Actuator Controller\AcutuatorPCB.PcbDoc
+Date     : 4/28/2026
+Time     : 7:22:24 PM
 
 Processing Rule : Clearance Constraint (Gap=0.127mm) (All),(All)
 Rule Violations :0
@@ -119,4 +119,4 @@ Rule Violations :0
 
 Violations Detected : 62
 Waived Violations : 0
-Time Elapsed        : 00:00:00
+Time Elapsed        : 00:00:01
