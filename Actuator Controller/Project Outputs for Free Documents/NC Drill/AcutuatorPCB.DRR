@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: AcutuatorPCB.PcbDoc   2026-04-29  12:43:10 AM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : AcutuatorPCB.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      0.3mm (12mil)                                             Round             97        PTH        600.93mm (23.66inch)
+T2      0.6mm (24mil)                                             Round             8         PTH        149.19mm (5.87inch)
+T3      1mm (39mil)                                               Round             22        PTH        195.89mm (7.71inch)
+T4      1.2mm (47mil)                                             Round             6         PTH        15.56mm (0.61inch)
+T5      2.605mm (103mil)                                          Round             3         PTH        11.00mm (0.43inch)
+T6      3.2mm (126mil)                                            Round             4         PTH        210.00mm (8.27inch)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              140
+
+Total Processing Time (hh:mm:ss) : 00:00:00

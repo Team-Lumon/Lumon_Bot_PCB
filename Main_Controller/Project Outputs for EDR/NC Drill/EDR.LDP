@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: D:\Nilesh\UOM_Projects\EDR\Lumon_Bot_PCB\Main_Controller\EDR.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=edr-roundholes.txt|DrillLayers=gtl,g1,gp1,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=edr-slotholes.txt|DrillLayers=gtl,g1,gp1,gbl
