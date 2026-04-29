@@ -152,24 +152,7 @@ GenerateClassCluster=0
 DocumentUniqueId=UHYCTFED
 
 [Document7]
-DocumentPath=Gerbers.Cam
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document8]
-DocumentPath=Drill NC.Cam
+DocumentPath=Motor Controller.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -194,98 +177,210 @@ DocumentPath=Project Outputs for Motor Controller\Motor Controller-Plated.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.DRR
+DocumentPath=Project Outputs for Free Documents\NC Drill\Motor Controller.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.EXTREP
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBL
+DocumentPath=Project Outputs for Motor Controller\NC Drill\Motor Controller.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBO
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBP
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBR1
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBR2
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBS
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GM
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GTL
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBR1
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GTO
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBR2
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GTP
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.GTS
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GM
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.LDP
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument17]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller.REP
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument18]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller_Copper_Signal_Bot.gbr
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument19]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller_Copper_Signal_Top.gbr
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument20]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller_Legend_Bot.gbr
+DocumentPath=Project Outputs for Free Documents\NC Drill\Motor Controller.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument21]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller_Legend_Top.gbr
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument22]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller_Paste_Bot.gbr
+DocumentPath=Project Outputs for Motor Controller\NC Drill\Motor Controller.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument23]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller_Paste_Top.gbr
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller.REP
 DItemRevisionGUID=
 
 [GeneratedDocument24]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller_Profile.gbr
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller.REP
 DItemRevisionGUID=
 
 [GeneratedDocument25]
-DocumentPath=Project Outputs for Motor Controller\Motor Controller_Soldermask_Bot.gbr
+DocumentPath=Project Outputs for Motor Controller\Motor Controller.REP
 DItemRevisionGUID=
 
 [GeneratedDocument26]
+DocumentPath=Project Outputs for Free Documents\NC Drill\Motor Controller.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=Project Outputs for Motor Controller\NC Drill\Motor Controller.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Copper_Signal_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Copper_Signal_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for Motor Controller\Motor Controller_Copper_Signal_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument31]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Copper_Signal_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument32]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Copper_Signal_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument33]
+DocumentPath=Project Outputs for Motor Controller\Motor Controller_Copper_Signal_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument34]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Legend_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument35]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Legend_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument36]
+DocumentPath=Project Outputs for Motor Controller\Motor Controller_Legend_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument37]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Legend_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument38]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Legend_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument39]
+DocumentPath=Project Outputs for Motor Controller\Motor Controller_Legend_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument40]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Paste_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument41]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Paste_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument42]
+DocumentPath=Project Outputs for Motor Controller\Motor Controller_Paste_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument43]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Paste_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument44]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Paste_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument45]
+DocumentPath=Project Outputs for Motor Controller\Motor Controller_Paste_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument46]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Profile.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument47]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Profile.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument48]
+DocumentPath=Project Outputs for Motor Controller\Motor Controller_Profile.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument49]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Soldermask_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument50]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Soldermask_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument51]
+DocumentPath=Project Outputs for Motor Controller\Motor Controller_Soldermask_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument52]
+DocumentPath=Project Outputs for Free Documents\Gerber\Motor Controller_Soldermask_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument53]
+DocumentPath=Project Outputs for Motor Controller\Gerber\Motor Controller_Soldermask_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument54]
 DocumentPath=Project Outputs for Motor Controller\Motor Controller_Soldermask_Top.gbr
 DItemRevisionGUID=
 
@@ -627,6 +722,24 @@ OutputDocumentPath1=
 OutputVariantName1=[No Variations]
 OutputDefault1=0
 PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
+Configuration1_Name1=ColumnNameFormat
+Configuration1_Item1=CaptionAsName
+Configuration1_Name2=ForceUpdateSettings
+Configuration1_Item2=False
+Configuration1_Name3=General
+Configuration1_Item3=OpenExported=False|AddToProject=False|ReportBOMViolationsInMessages=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePcbData=False|IncludeVaultData=True|IncludeCloudData=False|IncludeDocumentData=True|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|TemplateVaultGuid=|TemplateItemGuid=|TemplateRevisionGuid=|BatchMode=5|FormWidth=1200|FormHeight=710|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=USD|SolutionsPerItem=1|SuppliersPerSolution=1|ViewType=0|BomSetName=
+Configuration1_Name4=GroupOrder
+Configuration1_Item4=
+Configuration1_Name5=SortOrder
+Configuration1_Item5=Comment=Up
+Configuration1_Name6=VisibleOrder
+Configuration1_Item6=Line #=52|Comment=108|Description=120|Designator=76|Quantity=66|LCSC part #=164|LCSC link=120|Manufacturer 1=100|Manufacturer Part Number 1=166|Manufacturer Lifecycle 1=142|Supplier 1=72|Supplier Part Number 1=138|Supplier Unit Price 1=122|Supplier Subtotal 1=116
+Configuration1_Name7=VisibleOrder_Base
+Configuration1_Item7=Line #=52|Comment=108|Description=120|Designator=76|Quantity=66|LCSC part #=164|LCSC link=120|Manufacturer 1=100|Manufacturer Part Number 1=166|Manufacturer Lifecycle 1=142|Supplier 1=72|Supplier Part Number 1=138|Supplier Unit Price 1=122|Supplier Subtotal 1=116
+Configuration1_Name8=VisibleOrder_Consolidated
+Configuration1_Item8=Line #=100|Comment=100|Description=100|Designator=100|Quantity=100|Manufacturer 1=100|Manufacturer Part Number 1=166|Manufacturer Lifecycle 1=142|Supplier 1=72|Supplier Part Number 1=138|Supplier Unit Price 1=122|Supplier Subtotal 1=116
+Configuration1_Name9=VisibleOrder_Flat
+Configuration1_Item9=Line #=100|Comment=100|Description=100|Designator=100|Manufacturer 1=100|Manufacturer Part Number 1=166|Manufacturer Lifecycle 1=142|Supplier 1=72|Supplier Part Number 1=138|Supplier Unit Price 1=122|Supplier Subtotal 1=116
 OutputType2=BOM_ReportCompare
 OutputName2=BOM Compare
 OutputDocumentPath2=
